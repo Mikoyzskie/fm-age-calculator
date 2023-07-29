@@ -1,25 +1,58 @@
 .main{
   background-color: #fff;
+  width: 830px;
+  padding: 50px;
+  border-radius: 25px;
+  border-bottom-right-radius: 200px;
 }
 
 
 
 .form{
-  
   .input_container{
     display: flex;
-    justify-content: center;
+    gap: 35px;
     div{
       display: flex;
       flex-direction: column;
+      .inputs{
+        font-family: 'Poppins', sans-serif;
+        padding: 15px;
+        width: 150px;
+        font-size: 30px;
+        font-weight: 700;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid hsl(0, 0%, 86%);
+      }
+      .labels{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: hsl(0, 1%, 44%);
+        margin-bottom: 5px;
+      }
     }
   }
   .submit{
     display: flex;
     align-items: center;
-    &  *{
-     flex: 50%;
-      
+    hr{
+      flex-basis: 100%;
+      border-top:1px solid hsl(0, 0%, 86%);
     }
+    button.arrow{
+      padding: 25px;
+      border: none;
+      background-color: hsl(259, 100%, 65%);
+      border-radius: 50%;
+      flex-basis: auto;
+    }
+  }
+}
+
+section.results{
+  span.date{
+    color:hsl(259, 100%, 65%);
   }
 }
