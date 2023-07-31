@@ -26,14 +26,16 @@ input.inputs::-webkit-inner-spin-button {
       .inputs{
         font-family: 'Poppins', sans-serif;
         padding: 15px;
-        width: 150px;
+        width: 160px;
         
         font-size: clamp(1.125rem, 0.8609rem + 1.1268vw, 1.875rem);
         font-weight: 700;
         border-radius: 10px;
         outline: none;
         border: 1px solid hsl(0, 0%, 86%);
-        
+        &.required{
+          border-color:hsl(0, 100%, 67%);
+        }
         &:active,&:focus{
           border-color: hsl(259, 100%, 65%);;
         }
@@ -69,10 +71,18 @@ input.inputs::-webkit-inner-spin-button {
   }
 }
 
+
 section.results{
   span.date{
     color:hsl(259, 100%, 65%);
   }
+}
+
+.warning{
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 10px;
+  color: hsl(0, 100%, 67%);
 }
 
 @media only screen and (max-width:768px){
