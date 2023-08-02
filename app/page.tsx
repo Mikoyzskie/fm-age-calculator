@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import styles from './page.module.scss'
+import './page.scss'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 
@@ -25,6 +25,8 @@ export default function Home() {
   });
 
   const [required, setRequired] = useState('');
+  const [daywarn, setDaywarn] = useState('');
+  const [dayerror, setDayerror] = useState('hidden');
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,47 +38,51 @@ export default function Home() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(formData.day === 0 || !formData.day){
+    if(!formData.day || formData.day == 0){
       console.log(formData.day);
+      setDayerror("");
+      setDaywarn("This field is required");
       setRequired("required"); 
     }
-    else if(formData.month === 0 || !formData.month){
-      console.log(formData.month);
-      setRequired("required"); 
+    else{
+      console.log(formData.day);
+      setRequired("");
+      setDayerror("hidden");
+      setDaywarn("");
     }
-    console.log(formData);
+   
   };
 
 
   return (
-    <main className={styles.main}>
-      <form action="" className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.input_container}>
+    <main className="main">
+      <form action="" className="form" onSubmit={handleSubmit}>
+        <div className="input_container">
           <div>
-            <label htmlFor="day" className={styles.labels}>DAY</label>
-            <input type="number" id="day" name='day' placeholder='DD' className={`${styles.inputs} ${required && styles.required}`} autoComplete='off' onChange={handleChange} />
-            <span className={styles.warning}>Must be a valid day</span>
+            <label htmlFor="day" className="labels">DAY</label>
+            <input type="number" id="day" name='day' placeholder='DD' className={`inputs ${required}`} autoComplete='off' onChange={handleChange} />
+            <span className={`warning ${dayerror}`}>{daywarn}</span>
           </div>
           <div>
-            <label htmlFor="month" className={styles.labels}>MONTH</label>
-            <input type="number" id="month" name='month' placeholder='MM' className={styles.inputs} autoComplete='off' onChange={handleChange} />
-            <span className={styles.warning}>Must be a valid day</span>
+            <label htmlFor="month" className="labels">MONTH</label>
+            <input type="number" id="month" name='month' placeholder='MM' className={`inputs`} autoComplete='off' onChange={handleChange} />
+            <span className="warning">Must be a valid day</span>
           </div>
           <div>
-            <label htmlFor="year" className={styles.labels}>YEAR</label>
-            <input type="number" id="year" name='year' placeholder='YYYY' className={styles.inputs} autoComplete='off' onChange={handleChange} />
-            <span className={styles.warning}>Must be a valid day</span>
+            <label htmlFor="year" className="labels">YEAR</label>
+            <input type="number" id="year" name='year' placeholder='YYYY' className={`inputs`} autoComplete='off' onChange={handleChange} />
+            <span className="warning">Must be a valid day</span>
           </div>
         </div>
-        <div className={styles.submit}>
+        <div className="submit">
           <hr />
-          <button type="submit" className={styles.arrow}><Image className={styles.icon_arrow} src={'./icon-arrow.svg'} alt='icon arrow' width={50} height={50}/></button>
+          <button type="submit" className="arrow"><Image className="icon_arrow" src={'./icon-arrow.svg'} alt='icon arrow' width={50} height={50}/></button>
         </div>
       </form>
-      <section className={styles.results}>
-        <h1><span className={styles.date}>--</span> years</h1>
-        <h1><span className={styles.date}>--</span> months</h1>
-        <h1><span className={styles.date}>--</span> days</h1>
+      <section className="results">
+        <h1><span className="date">--</span> years</h1>
+        <h1><span className="date">--</span> months</h1>
+        <h1><span className="date">--</span> days</h1>
       </section>
      
     </main>
